@@ -21,3 +21,12 @@ jobs:
       with:
         name: 21-ea-min.zip
         path: 21-ea-min.zip
+
+    - name: Setup public/
+      run: mkdir public
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public

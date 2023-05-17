@@ -24,7 +24,7 @@ jobs:
     - name: Unzip JDK openjdk-21-ea+22
       run: mkdir openjdk-21-ea+22 && tar -xvf openjdk-21-ea+22_linux-x64_bin.tar.gz -C openjdk-21-ea+22/
     - name: jlink openjdk-21-ea+22
-      run: cd openjdk-21-ea+22 && ls && bin/jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output ../openjdk-21-ea+22
+      run: cd openjdk-21-ea+22/jdk-21 && ls && bin/jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output ../../openjdk-21-ea+22
     - name: ls
       run: ls -R
     - name: Zip up result

@@ -10,6 +10,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
     - name: Download JDK 21-ea
       run: wget https://download.java.net/java/early_access/jdk21/22/GPL/openjdk-21-ea+22_linux-x64_bin.tar.gz -O openjdk-21-ea+22_linux-x64_bin.tar.gz

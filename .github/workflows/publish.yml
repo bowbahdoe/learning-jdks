@@ -19,23 +19,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download JDK 21-ea
+    - name: Download JDK openjdk-21-ea+22
       run: wget https://download.java.net/java/early_access/jdk21/22/GPL/openjdk-21-ea+22_linux-x64_bin.tar.gz -O openjdk-21-ea+22_linux-x64_bin.tar.gz
-    - name: Unzip JDK 21-ea
-      run: mkdir 21-ea && tar -xvf openjdk-21-ea+22_linux-x64_bin.tar.gz -C 21-ea/
-    - name: jlink 21-ea
-      run: cd 21-ea && jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output ../21-ea-min
+    - name: Unzip JDK openjdk-21-ea+22
+      run: mkdir openjdk-21-ea+22 && tar -xvf openjdk-21-ea+22_linux-x64_bin.tar.gz -C openjdk-21-ea+22/
+    - name: jlink openjdk-21-ea+22
+      run: cd openjdk-21-ea+22 && ./bin/jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output ../openjdk-21-ea+22
     - name: ls
       run: ls -R
     - name: Zip up result
-      run: zip -r 21-ea-min.zip 21-ea-min
+      run: zip -r openjdk-21-ea+22.zip openjdk-21-ea+22
     - uses: actions/upload-artifact@v3
       with:
-        name: 21-ea-min.zip
-        path: 21-ea-min.zip
+        name: openjdk-21-ea+22.zip
+        path: openjdk-21-ea+22.zip
 
     - name: Setup public/
-      run: mkdir public && cp 21-ea-min.zip public
+      run: mkdir public && cp openjdk-21-ea+22.zip public
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1

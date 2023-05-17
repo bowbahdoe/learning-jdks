@@ -17,3 +17,7 @@ jobs:
       run: ls -R
     - name: Zip up result
       run: zip -r 21-ea-min.zip 21-ea-min
+    - uses: actions/upload-artifact@v3
+      with:
+        name: 21-ea-min.zip
+        path: 21-ea-min.zip

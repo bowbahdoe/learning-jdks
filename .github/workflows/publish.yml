@@ -34,8 +34,23 @@ jobs:
         name: openjdk-21-ea+22.zip
         path: openjdk-21-ea+22.zip
 
+    - name: Download JDK openjdk-20-valhalla+20-75
+      run: wget https://download.java.net/java/early_access/valhalla/20/openjdk-20-valhalla+20-75_linux-x64_bin.tar.gz -O openjdk-20-valhalla+20-75_linux-x64_bin.tar.gz
+    - name: Unzip JDK openjdk-20-valhalla+20-75
+      run: mkdir openjdk-20-valhalla+20-75 && tar -xvf openjdk-20-valhalla+20-75_linux-x64_bin.tar.gz -C openjdk-20-valhalla+20-75/
+    - name: jlink openjdk-20-valhalla+20-75
+      run: cd openjdk-20-valhalla+20-75/jdk-21 && ls && bin/jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output ../../openjdk-20-valhalla+20-75-min
+    - name: ls
+      run: ls -R
+    - name: Zip up result
+      run: zip -r openjdk-20-valhalla+20-75.zip openjdk-20-valhalla+20-75-min
+    - uses: actions/upload-artifact@v3
+      with:
+        name: openjdk-20-valhalla+20-75.zip
+        path: openjdk-20-valhalla+20-75.zip
+
     - name: Setup public/
-      run: mkdir public && cp openjdk-21-ea+22.zip public
+      run: mkdir public && cp openjdk-21-ea+22.zip public && cp openjdk-20-valhalla+20-75.zip public
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1

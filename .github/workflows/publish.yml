@@ -12,7 +12,7 @@ jobs:
     - name: Unzip JDK 21-ea
       run: mkdir 21-ea && tar -xvf openjdk-21-ea+22_linux-x64_bin.tar.gz -C 21-ea/
     - name: jlink 21-ea
-      run: cd 21-ea && jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output 21-ea-min
+      run: cd 21-ea && jlink --add-modules java.base,jdk.compiler --no-header-files --no-man-pages --strip-debug --output ../21-ea-min
     - name: ls
       run: ls -R
     - name: Zip up result
